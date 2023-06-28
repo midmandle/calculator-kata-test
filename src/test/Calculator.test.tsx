@@ -14,7 +14,26 @@ describe('Calculator', () => {
             const outputWindowElement = screen.getByRole('textbox');
 
             expect(outputWindowElement).toHaveTextContent(numPadNumber);
-        })
-    })
+        });
+    });
+    it('should print first number, operator and second number when buttons pressed sequentially', async() => {
+        render(<Calculator/>);
+
+        const numberOne = "1";
+        const firstNumPadNumber = screen.getByRole('button', {name: numberOne});
+        await userEvent.click(firstNumPadNumber);
+
+        const plusOperator = "+";
+        const operator = screen.getByRole('button', {name: plusOperator});
+        await userEvent.click(operator);
+
+        const numberTwo = "2";
+        const secondNumPadNumber = screen.getByRole('button', {name: numberTwo});
+        await userEvent.click(secondNumPadNumber);
+
+        const outputWindowElement = screen.getByRole('textbox');
+
+        expect(outputWindowElement).toHaveTextContent(`${numberOne} ${plusOperator} ${numberTwo}`);
+    });
 });
 
