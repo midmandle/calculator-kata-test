@@ -3,7 +3,7 @@ export default function calculate(calculation: string): string {
 
     let result: string;
 
-    switch (operator){
+    switch (operator) {
         case "+":
             result = String(Number(firstNumber) + Number(secondNumber));
             break;
@@ -12,6 +12,9 @@ export default function calculate(calculation: string): string {
             break;
         case "*":
             result = String(Number(firstNumber) * Number(secondNumber));
+            break;
+        case "/":
+            result = String(Number(firstNumber) / Number(secondNumber));
             break;
         default:
             result = "";

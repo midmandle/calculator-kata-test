@@ -17,4 +17,9 @@ describe('calculate', () => {
 
        expect(result).toEqual('2070');
    });
+   it('should calculate the result of the division', () => {
+      const result = calculate('80 / 4');
+
+       expect(result).toEqual('20');
+   });
 });
