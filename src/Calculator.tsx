@@ -1,5 +1,5 @@
 import {useState} from "react";
-import calculate from "./test/calculate.ts";
+import calculate from "./calculate.ts";
 
 export function Calculator() {
     const [calculation, setCalculation] = useState("");

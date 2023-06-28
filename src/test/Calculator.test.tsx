@@ -2,8 +2,8 @@ import {Calculator} from "../Calculator.tsx";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {vi, Mock} from "vitest";
-import calculate from "./calculate.ts";
-vi.mock("./calculate.ts")
+import calculate from "../calculate.ts";
+vi.mock("../calculate.ts")
 
 describe('Calculator', () => {
     describe('should print single number when pressed', () => {
