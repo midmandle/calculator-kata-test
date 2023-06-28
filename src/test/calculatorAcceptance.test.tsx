@@ -48,4 +48,25 @@ describe('Calculator Acceptance', () => {
 
         expect(outputText).toHaveTextContent('174');
     });
+    test('user can multiply two numbers together and see the result', async () => {
+        render(<Calculator/>)
+
+        const number2Button = screen.getByRole('button', {name: '2'});
+        const number0Button = screen.getByRole('button', {name: '0'});
+        const multiplyOperatorButton = screen.getByRole('button', {name: '*'});
+        const number4Button = screen.getByRole('button', {name: '4'});
+        const number5Button = screen.getByRole('button', {name: '5'});
+        const equalsButton = screen.getByRole('button', {name: '='});
+
+        await userEvent.click(number2Button);
+        await userEvent.click(number0Button);
+        await userEvent.click(multiplyOperatorButton);
+        await userEvent.click(number4Button);
+        await userEvent.click(number5Button);
+        await userEvent.click(equalsButton);
+
+        const outputText = screen.getByRole('textbox');
+
+        expect(outputText).toHaveTextContent('900');
+    });
 });

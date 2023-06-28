@@ -12,4 +12,9 @@ describe('calculate', () => {
 
        expect(result).toEqual('14');
    });
+   it('should calculate the result of the multiplication', () => {
+      const result = calculate('30 * 69');
+
+       expect(result).toEqual('2070');
+   });
 });
