@@ -102,5 +102,24 @@ describe('Calculator', () => {
 
         expect(outputWindowElement).toHaveTextContent(`${numberSeven} ${multiplyOperator} ${numberFive}`);
     });
+    it('should print first number, multiply operator and second number when buttons pressed sequentially', async() => {
+        render(<Calculator/>);
+
+        const numberNine = "9";
+        const firstNumPadNumber = screen.getByRole('button', {name: numberNine});
+        await userEvent.click(firstNumPadNumber);
+
+        const divideOperator = "/";
+        const operator = screen.getByRole('button', {name: divideOperator});
+        await userEvent.click(operator);
+
+        const numberThree = "3";
+        const secondNumPadNumber = screen.getByRole('button', {name: numberThree});
+        await userEvent.click(secondNumPadNumber);
+
+        const outputWindowElement = screen.getByRole('textbox');
+
+        expect(outputWindowElement).toHaveTextContent(`${numberNine} ${divideOperator} ${numberThree}`);
+    });
 });
 

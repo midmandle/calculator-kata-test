@@ -19,6 +19,7 @@ export function Calculator() {
         <button onClick={() => updateCalculation(" + ")}>+</button>
         <button onClick={() => updateCalculation(" - ")}>-</button>
         <button onClick={() => updateCalculation(" * ")}>*</button>
+        <button onClick={() => updateCalculation(" / ")}>/</button>
         <button onClick={executeOperation}>=</button>
     </div>;
 }
