@@ -6,5 +6,8 @@ export default function calculate(calculation: string): string {
     if(operator === "+"){
        result = String(Number(firstNumber) + Number(secondNumber));
     }
+    if(operator === "-"){
+       result = String(Number(firstNumber) - Number(secondNumber));
+    }
     return result;
 }
