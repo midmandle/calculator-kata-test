@@ -1,6 +1,9 @@
 import {Calculator} from "../Calculator.tsx";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import {vi, Mock} from "vitest";
+import calculate from "./calculate.ts";
+vi.mock("./calculate.ts")
 
 describe('Calculator', () => {
     describe('should print single number when pressed', () => {
@@ -34,6 +37,32 @@ describe('Calculator', () => {
         const outputWindowElement = screen.getByRole('textbox');
 
         expect(outputWindowElement).toHaveTextContent(`${numberOne} ${plusOperator} ${numberTwo}`);
+    });
+    it('should perform calculation and print the result', async() => {
+        render(<Calculator/>);
+
+        const mockCalculationResult = "This is a mock result";
+        (calculate as Mock).mockReturnValueOnce(mockCalculationResult);
+
+        const numberOne = "1";
+        const firstNumPadNumber = screen.getByRole('button', {name: numberOne});
+        await userEvent.click(firstNumPadNumber);
+
+        const plusOperator = "+";
+        const operator = screen.getByRole('button', {name: plusOperator});
+        await userEvent.click(operator);
+
+        const numberTwo = "2";
+        const secondNumPadNumber = screen.getByRole('button', {name: numberTwo});
+        await userEvent.click(secondNumPadNumber);
+
+        const equalsButton = screen.getByRole('button', {name: "="});
+        await userEvent.click(equalsButton);
+
+        const outputWindowElement = screen.getByRole('textbox');
+
+        expect(calculate).toHaveBeenCalledWith("1 + 2");
+        expect(outputWindowElement).toHaveTextContent(mockCalculationResult);
     });
 });
 
