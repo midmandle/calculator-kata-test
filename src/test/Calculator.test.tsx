@@ -3,27 +3,18 @@ import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 describe('Calculator', () => {
-   it('should display the number 1 pressed on the number pad', async () => {
-       render(<Calculator/>);
+    describe('should print single number when pressed', () => {
+        it.each(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])('should display the number %d pressed on the number pad', async (numPadNumber: string) => {
+            render(<Calculator/>);
 
-       const numberButton = screen.getByRole('button', {name: '1'});
+            const numberButton = screen.getByRole('button', {name: numPadNumber});
 
-       await userEvent.click(numberButton);
+            await userEvent.click(numberButton);
 
-       const outputWindowElement = screen.getByRole('textbox');
+            const outputWindowElement = screen.getByRole('textbox');
 
-       expect(outputWindowElement).toHaveTextContent('1');
-   })
-
-    it('should display the number 2 pressed on the number pad', async () => {
-        render(<Calculator/>);
-
-        const numberButton = screen.getByRole('button', {name: '2'});
-
-        await userEvent.click(numberButton);
-
-        const outputWindowElement = screen.getByRole('textbox');
-
-        expect(outputWindowElement).toHaveTextContent('2');
+            expect(outputWindowElement).toHaveTextContent(numPadNumber);
+        })
     })
 });
+
