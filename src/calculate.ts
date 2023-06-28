@@ -1,13 +1,21 @@
 export default function calculate(calculation: string): string {
     const [firstNumber, operator, secondNumber] = calculation.split(" ");
 
-    let result = "";
+    let result: string;
 
-    if(operator === "+"){
-       result = String(Number(firstNumber) + Number(secondNumber));
+    switch (operator){
+        case "+":
+            result = String(Number(firstNumber) + Number(secondNumber));
+            break;
+        case "-":
+            result = String(Number(firstNumber) - Number(secondNumber));
+            break;
+        case "*":
+            result = String(Number(firstNumber) * Number(secondNumber));
+            break;
+        default:
+            result = "";
     }
-    if(operator === "-"){
-       result = String(Number(firstNumber) - Number(secondNumber));
-    }
+
     return result;
 }

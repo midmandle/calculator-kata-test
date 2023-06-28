@@ -18,6 +18,7 @@ export function Calculator() {
         {['0','1','2','3','4','5','6','7','8','9'].map((number) => <button key={`numPad_${number}`} onClick={() => {updateCalculation(number)}}>{number}</button>)}
         <button onClick={() => updateCalculation(" + ")}>+</button>
         <button onClick={() => updateCalculation(" - ")}>-</button>
+        <button onClick={() => updateCalculation(" * ")}>*</button>
         <button onClick={executeOperation}>=</button>
     </div>;
 }
