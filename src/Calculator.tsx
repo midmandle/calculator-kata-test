@@ -13,6 +13,10 @@ export function Calculator() {
         setCalculation(calculationResult);
     }
 
+    function cleanCalculation() {
+        setCalculation("");
+    }
+
     return <div>
         <div role='textbox'>{calculation}</div>
         {['0','1','2','3','4','5','6','7','8','9'].map((number) => <button key={`numPad_${number}`} onClick={() => {updateCalculation(number)}}>{number}</button>)}
@@ -20,6 +24,7 @@ export function Calculator() {
         <button onClick={() => updateCalculation(" - ")}>-</button>
         <button onClick={() => updateCalculation(" * ")}>*</button>
         <button onClick={() => updateCalculation(" / ")}>/</button>
+        <button onClick={cleanCalculation}>CE</button>
         <button onClick={executeOperation}>=</button>
     </div>;
 }

@@ -121,5 +121,28 @@ describe('Calculator', () => {
 
         expect(outputWindowElement).toHaveTextContent(`${numberNine} ${divideOperator} ${numberThree}`);
     });
+    it('should delete the current calculation when delete button pressed', async() => {
+        render(<Calculator/>);
+
+        const numberNine = "9";
+        const firstNumPadNumber = screen.getByRole('button', {name: numberNine});
+        await userEvent.click(firstNumPadNumber);
+
+        const divideOperator = "/";
+        const operator = screen.getByRole('button', {name: divideOperator});
+        await userEvent.click(operator);
+
+        const numberThree = "3";
+        const secondNumPadNumber = screen.getByRole('button', {name: numberThree});
+        await userEvent.click(secondNumPadNumber);
+
+        const deleteOperator = "CE";
+        const operatorDelete = screen.getByRole('button', {name: deleteOperator});
+        await userEvent.click(operatorDelete);
+
+        const outputWindowElement = screen.getByRole('textbox');
+
+        expect(outputWindowElement).toBeEmptyDOMElement();
+    });
 });
 
